@@ -19,7 +19,7 @@ public class Challenge {
 
         // import file
         try {
-            items = importFromCSV();
+            items = importFromCSV("de/exxcellent/challenge/weather.csv","Day", "MxT", "MnT");
 
         } catch (IOException ex) {
             System.out.printf(ex.getMessage());
@@ -33,24 +33,24 @@ public class Challenge {
     }
 
     // Read CSV file and store records as ChallengeRecord list
-    public List<ChallengeRecord> importFromCSV() throws IOException {
+    public List<ChallengeRecord> importFromCSV(String filename, String keyLabel, String firstLabel, String secondLabel) throws IOException {
 
         // empty list
         List<ChallengeRecord> items = new ArrayList<>();
 
         // load weather.csv
         ClassLoader classLoader = getClass().getClassLoader();
-        Reader in = new FileReader(classLoader.getResource("de/exxcellent/challenge/weather.csv").getFile());
+        Reader in = new FileReader(classLoader.getResource(filename).getFile());
 
         // parse CSV-file using package org.apache.commons.csv
         Iterable<CSVRecord> records = CSVFormat.RFC4180.withFirstRecordAsHeader().parse(in);
         for (CSVRecord record : records) {
-            String day = record.get("Day");
-            String mxt = record.get("MxT");
-            String mnt = record.get("MnT");
+            String key = record.get(keyLabel);
+            String value1 = record.get(firstLabel);
+            String value2 = record.get(secondLabel);
 
             // add data to list
-            items.add(new ChallengeRecord(day, mxt, mnt));
+            items.add(new ChallengeRecord(key, value1, value2));
         }
 
         return items;
