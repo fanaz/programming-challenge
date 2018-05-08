@@ -12,8 +12,10 @@ public final class App {
 
         // Your preparation code …
         Challenge weather = new Challenge();
-
+        weather.importFromCSV("de/exxcellent/challenge/weather.csv","Day", "MxT", "MnT");
         String dayWithSmallestTempSpread = weather.dayWithMinSpread();
+
+
         String teamWithSmallesGoalSpread = "A good team"; // Your goal analysis function call …
 
         System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);

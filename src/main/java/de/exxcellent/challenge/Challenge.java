@@ -12,19 +12,10 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 
 public class Challenge {
+    private List<ChallengeRecord> items = new ArrayList<>();
 
     // Weather Challenge: output day number with smallest spread
     public String dayWithMinSpread() {
-        List<ChallengeRecord> items = new ArrayList<>();
-
-        // import file and specify column labels
-        try {
-            items = importFromCSV("de/exxcellent/challenge/weather.csv","Day", "MxT", "MnT");
-
-        } catch (IOException ex) {
-            System.out.printf(ex.getMessage());
-        }
-
         // find item with minimal spread
         ChallengeRecord minBySpread = minBySpread(items);
 
@@ -33,27 +24,27 @@ public class Challenge {
     }
 
     // Read CSV file and store records as ChallengeRecord list
-    public List<ChallengeRecord> importFromCSV(String filename, String keyLabel, String firstLabel, String secondLabel) throws IOException {
+    public int importFromCSV(String filename, String keyLabel, String firstLabel, String secondLabel) {
+        try {
+            // load  csv file
+            ClassLoader classLoader = getClass().getClassLoader();
+            Reader in = new FileReader(classLoader.getResource(filename).getFile());
 
-        // empty list
-        List<ChallengeRecord> items = new ArrayList<>();
+            // parse CSV-file using package org.apache.commons.csv
+            Iterable<CSVRecord> records = CSVFormat.RFC4180.withFirstRecordAsHeader().parse(in);
+            for (CSVRecord record : records) {
+                String key = record.get(keyLabel);
+                String value1 = record.get(firstLabel);
+                String value2 = record.get(secondLabel);
 
-        // load  csv file
-        ClassLoader classLoader = getClass().getClassLoader();
-        Reader in = new FileReader(classLoader.getResource(filename).getFile());
+                // add data to list
+                items.add(new ChallengeRecord(key, value1, value2));
+            }
+        } catch (IOException ex) {
 
-        // parse CSV-file using package org.apache.commons.csv
-        Iterable<CSVRecord> records = CSVFormat.RFC4180.withFirstRecordAsHeader().parse(in);
-        for (CSVRecord record : records) {
-            String key = record.get(keyLabel);
-            String value1 = record.get(firstLabel);
-            String value2 = record.get(secondLabel);
-
-            // add data to list
-            items.add(new ChallengeRecord(key, value1, value2));
         }
 
-        return items;
+        return items.size();
     }
 
     // Return a ChallengeRecord out of list with smallest spread (MxT - MnT)

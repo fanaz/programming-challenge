@@ -11,8 +11,8 @@ public class ChallengeTest {
     @Test
     public void importFromCSVTest() throws IOException {
         Challenge testChallenge = new Challenge();
-        List<ChallengeRecord> items = testChallenge.importFromCSV("de/exxcellent/challenge/weather.csv","Day", "MxT", "MnT");
-        Assert.assertEquals(30, items.size());
+        int size = testChallenge.importFromCSV("de/exxcellent/challenge/weather.csv","Day", "MxT", "MnT");
+        Assert.assertEquals(30, size);
     }
 
     @Test
