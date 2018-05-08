@@ -47,7 +47,7 @@ public class Challenge {
         return items.size();
     }
 
-    // Return a ChallengeRecord out of list with smallest spread abs(MxT - MnT)
+    // Return a ChallengeRecord out of list with smallest spread abs(value1 - value2)
     // not necessarily unique if there are multiple items with identical spread
     public ChallengeRecord minBySpread(List<ChallengeRecord> items) {
         return items
