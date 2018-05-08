@@ -11,9 +11,9 @@ public final class App {
     public static void main(String... args) {
 
         // Your preparation code …
+        WeatherChallenge weather = new WeatherChallenge();
 
-
-        String dayWithSmallestTempSpread = "Someday";     // Your day analysis function call …
+        String dayWithSmallestTempSpread = Integer.toString(weather.dayWithMinSpread());
         String teamWithSmallesGoalSpread = "A good team"; // Your goal analysis function call …
 
         System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);

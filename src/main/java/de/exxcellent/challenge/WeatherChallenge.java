@@ -13,8 +13,27 @@ import org.apache.commons.csv.CSVRecord;
 
 public class WeatherChallenge {
 
+    // output day number with smallest spread
+    public int dayWithMinSpread() {
+        List<WeatherItem> items = new ArrayList<>();
+
+        // import file
+        try {
+            items = importFromCSV();
+
+        } catch (IOException ex) {
+            System.out.printf(ex.getMessage());
+        }
+
+        // find item with minimal spread
+        WeatherItem minBySpread = minBySpread(items);
+
+        // return day
+        return minBySpread.getDay();
+    }
+
     // Read CSV file and store records as WeatherItem list
-    public List<WeatherItem> importFromCSV() throws IOException {
+    private List<WeatherItem> importFromCSV() throws IOException {
 
         // empty list
         List<WeatherItem> items = new ArrayList<>();
@@ -39,7 +58,7 @@ public class WeatherChallenge {
 
     // Return a WeatherItem out of list with smallest spread (MxT - MnT)
     // not necessarily unique if there are multiple items with identical spread
-    public WeatherItem minBySpread(List<WeatherItem> items) {
+    private WeatherItem minBySpread(List<WeatherItem> items) {
         return items
                 .stream()
                 .min(Comparator.comparing(a -> a.getMxt() - a.getMnt()))
