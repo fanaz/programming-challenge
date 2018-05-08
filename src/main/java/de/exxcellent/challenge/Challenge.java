@@ -14,12 +14,12 @@ import org.apache.commons.csv.CSVRecord;
 public class Challenge {
     private List<ChallengeRecord> items = new ArrayList<>();
 
-    // Weather Challenge: output day number with smallest spread
+    // output key of item with smallest spread
     public String keyWithMinSpread() {
         // find item with minimal spread
         ChallengeRecord minBySpread = minBySpread(items);
 
-        // return day
+        // return key
         return minBySpread.getKey();
     }
 
@@ -41,7 +41,7 @@ public class Challenge {
                 items.add(new ChallengeRecord(key, value1, value2));
             }
         } catch (IOException ex) {
-
+            // todo: catch exception. what would be useful?
         }
 
         return items.size();
@@ -52,7 +52,7 @@ public class Challenge {
     public ChallengeRecord minBySpread(List<ChallengeRecord> items) {
         return items
                 .stream()
-                .min(Comparator.comparing(a -> a.spread()))
+                .min(Comparator.comparing(a -> a.spread())) //
                 .orElseThrow(NoSuchElementException::new);
     }
 }
