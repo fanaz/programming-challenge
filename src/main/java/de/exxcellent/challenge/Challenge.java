@@ -52,7 +52,7 @@ public class Challenge {
     public ChallengeRecord minBySpread(List<ChallengeRecord> items) {
         return items
                 .stream()
-                .min(Comparator.comparing(a -> a.spread())) //
+                .min(Comparator.comparing(a -> a.spread())) // minimum in relation to spread()
                 .orElseThrow(NoSuchElementException::new);
     }
 }
