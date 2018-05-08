@@ -1,3 +1,5 @@
+package de.exxcellent.challenge;
+
 public class WeatherItem {
     // Class to store weather data of one day
 
