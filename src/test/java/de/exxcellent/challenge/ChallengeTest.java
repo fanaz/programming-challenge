@@ -26,6 +26,6 @@ public class ChallengeTest {
 
         ChallengeRecord minBySpread = testChallenge.minBySpread(items);
 
-        Assert.assertEquals(8, minBySpread.getMxt()-minBySpread.getMnt());
+        Assert.assertEquals(8, minBySpread.spread());
     }
 }

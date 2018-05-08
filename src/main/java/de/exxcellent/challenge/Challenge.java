@@ -29,7 +29,7 @@ public class Challenge {
         ChallengeRecord minBySpread = minBySpread(items);
 
         // return day
-        return minBySpread.getDay();
+        return minBySpread.getKey();
     }
 
     // Read CSV file and store records as ChallengeRecord list
@@ -61,7 +61,7 @@ public class Challenge {
     public ChallengeRecord minBySpread(List<ChallengeRecord> items) {
         return items
                 .stream()
-                .min(Comparator.comparing(a -> a.getMxt() - a.getMnt()))
+                .min(Comparator.comparing(a -> a.spread()))
                 .orElseThrow(NoSuchElementException::new);
     }
 }

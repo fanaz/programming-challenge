@@ -4,26 +4,22 @@ public class ChallengeRecord {
     // Class to store weather data of one day
 
     // Properties
-    private final int day;
-    private final int mxt;
-    private final int mnt;
+    private final int key;
+    private final int value1;
+    private final int value2;
 
     // Constructor
-    public ChallengeRecord(String day, String mxt, String mnt) {
-        this.day = Integer.parseInt(day);
-        this.mxt = Integer.parseInt(mxt);
-        this.mnt = Integer.parseInt(mnt);
+    public ChallengeRecord(String key, String value1, String value2) {
+        this.key = Integer.parseInt(key);
+        this.value1 = Integer.parseInt(value1);
+        this.value2 = Integer.parseInt(value2);
     }
 
-    public int getDay() {
-        return day;
+    public int getKey() {
+        return key;
     }
 
-    public int getMxt() {
-        return mxt;
-    }
-
-    public int getMnt() {
-        return mnt;
+    public int spread() {
+        return value1 - value2;
     }
 }
