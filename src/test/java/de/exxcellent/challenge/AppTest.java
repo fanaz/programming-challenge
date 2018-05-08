@@ -24,11 +24,4 @@ public class AppTest {
     public void aPointlessTest() {
         Assert.assertEquals("Expectations met", "successful", successLabel);
     }
-
-    @Test
-    public void importFromCSVTest() throws IOException {
-        WeatherChallenge testChallenge = new WeatherChallenge();
-        List<WeatherItem> items = testChallenge.importFromCSV();
-        Assert.assertEquals(30, items.size());
-    }
 }

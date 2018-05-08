@@ -4,13 +4,16 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 
 public class WeatherChallenge {
 
+    // Read CSV file and store records as WeatherItem list
     public List<WeatherItem> importFromCSV() throws IOException {
 
         // empty list
@@ -32,5 +35,14 @@ public class WeatherChallenge {
         }
 
         return items;
+    }
+
+    // Return a WeatherItem out of list with smallest spread (MxT - MnT)
+    // not necessarily unique if there are multiple items with identical spread
+    public WeatherItem minBySpread(List<WeatherItem> items) {
+        return items
+                .stream()
+                .min(Comparator.comparing(a -> a.getMxt() - a.getMnt()))
+                .orElseThrow(NoSuchElementException::new);
     }
 }
