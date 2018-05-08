@@ -13,11 +13,11 @@ import org.apache.commons.csv.CSVRecord;
 
 public class Challenge {
 
-    // output day number with smallest spread
-    public int dayWithMinSpread() {
+    // Weather Challenge: output day number with smallest spread
+    public String dayWithMinSpread() {
         List<ChallengeRecord> items = new ArrayList<>();
 
-        // import file
+        // import file and specify column labels
         try {
             items = importFromCSV("de/exxcellent/challenge/weather.csv","Day", "MxT", "MnT");
 
