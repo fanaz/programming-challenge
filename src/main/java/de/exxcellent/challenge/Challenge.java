@@ -38,7 +38,7 @@ public class Challenge {
         // empty list
         List<ChallengeRecord> items = new ArrayList<>();
 
-        // load weather.csv
+        // load  csv file
         ClassLoader classLoader = getClass().getClassLoader();
         Reader in = new FileReader(classLoader.getResource(filename).getFile());
 

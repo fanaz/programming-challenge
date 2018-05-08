@@ -1,7 +1,7 @@
 package de.exxcellent.challenge;
 
 public class ChallengeRecord {
-    // Class to store weather data of one day
+    // Class to store data of one record
 
     // Properties
     private final int key;
