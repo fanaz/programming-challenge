@@ -11,7 +11,7 @@ public final class App {
     public static void main(String... args) {
 
         // Your preparation code …
-        WeatherChallenge weather = new WeatherChallenge();
+        Challenge weather = new Challenge();
 
         String dayWithSmallestTempSpread = Integer.toString(weather.dayWithMinSpread());
         String teamWithSmallesGoalSpread = "A good team"; // Your goal analysis function call …

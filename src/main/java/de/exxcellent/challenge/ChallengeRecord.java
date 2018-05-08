@@ -1,6 +1,6 @@
 package de.exxcellent.challenge;
 
-public class WeatherItem {
+public class ChallengeRecord {
     // Class to store weather data of one day
 
     // Properties
@@ -9,7 +9,7 @@ public class WeatherItem {
     private final int mnt;
 
     // Constructor
-    public WeatherItem(String day, String mxt, String mnt) {
+    public ChallengeRecord(String day, String mxt, String mnt) {
         this.day = Integer.parseInt(day);
         this.mxt = Integer.parseInt(mxt);
         this.mnt = Integer.parseInt(mnt);
