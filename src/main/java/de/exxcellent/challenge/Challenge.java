@@ -15,7 +15,7 @@ public class Challenge {
     private List<ChallengeRecord> items = new ArrayList<>();
 
     // Weather Challenge: output day number with smallest spread
-    public String dayWithMinSpread() {
+    public String keyWithMinSpread() {
         // find item with minimal spread
         ChallengeRecord minBySpread = minBySpread(items);
 
