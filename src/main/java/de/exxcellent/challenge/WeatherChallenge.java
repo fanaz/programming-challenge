@@ -18,7 +18,7 @@ public class WeatherChallenge {
 
         // load weather.csv
         ClassLoader classLoader = getClass().getClassLoader();
-        Reader in = new FileReader(classLoader.getResource("weather.csv").getFile());
+        Reader in = new FileReader(classLoader.getResource("de/exxcellent/challenge/weather.csv").getFile());
 
         // parse CSV-file using package org.apache.commons.csv
         Iterable<CSVRecord> records = CSVFormat.RFC4180.withFirstRecordAsHeader().parse(in);

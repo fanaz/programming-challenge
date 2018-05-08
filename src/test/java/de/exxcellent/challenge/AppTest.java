@@ -4,6 +4,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
+import java.util.List;
+
 /**
  * Example JUnit4 test case.
  * @author Benjamin Schmid <benjamin.schmid@exxcellent.de>
@@ -22,4 +25,10 @@ public class AppTest {
         Assert.assertEquals("Expectations met", "successful", successLabel);
     }
 
+    @Test
+    public void importFromCSVTest() throws IOException {
+        WeatherChallenge testChallenge = new WeatherChallenge();
+        List<WeatherItem> items = testChallenge.importFromCSV();
+        Assert.assertEquals(30, items.size());
+    }
 }
