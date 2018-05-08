@@ -1,5 +1,7 @@
 package de.exxcellent.challenge;
 
+import java.lang.Math;
+
 public class ChallengeRecord {
     // Class to store data of one record
 
@@ -20,6 +22,6 @@ public class ChallengeRecord {
     }
 
     public int spread() {
-        return value1 - value2;
+        return Math.abs(value1 - value2);
     }
 }
