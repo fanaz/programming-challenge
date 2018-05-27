@@ -1,5 +1,8 @@
 package de.exxcellent.challenge;
 
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVRecord;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -7,9 +10,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
-
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVRecord;
+import java.util.stream.StreamSupport;
+import java.util.stream.Collectors;
 
 public class Challenge {
     private List<ChallengeRecord> items = new ArrayList<>();
@@ -32,14 +34,12 @@ public class Challenge {
 
             // parse CSV-file using package org.apache.commons.csv
             Iterable<CSVRecord> records = CSVFormat.RFC4180.withFirstRecordAsHeader().parse(in);
-            for (CSVRecord record : records) {
-                String key = record.get(keyLabel);
-                String value1 = record.get(firstLabel);
-                String value2 = record.get(secondLabel);
 
-                // add data to list
-                items.add(new ChallengeRecord(key, value1, value2));
-            }
+            // map each CSVRecord to a ChallengeRecord using the Java stream API
+            items = StreamSupport.stream(records.spliterator(), false)
+                    .map(r -> new ChallengeRecord(r.get(keyLabel), r.get(firstLabel), r.get(secondLabel)))
+                    .collect(Collectors.toList());
+
         } catch (IOException ex) {
             // todo: catch exception. what would be useful?
         }
